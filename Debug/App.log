@@ -1,0 +1,4 @@
+﻿  App.cpp
+  Main.cpp
+  Gerando Código...
+LINK : fatal error LNK1104: não é possível abrir o arquivo 'glfw3.lib'

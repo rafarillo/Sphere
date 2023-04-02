@@ -1,0 +1,2 @@
+D:\Udemy\Computer Graphics with Modern OpenGL and C++\App\x64\Debug\App.exe
+D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\x64\Debug\App.exe
