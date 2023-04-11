@@ -57,8 +57,6 @@ void CreateShpere(int n) // n is the number of faces
 		for (int j = 0; j < n; j++)
 		{
 			float phi = 2.0 * M_PI / n * (float)(j);
-			//printf("theta = %f\n", theta);
-			//printf("phi = %f\n", phi);
 			float x = 1.0 * sin(theta) * cos(phi);
 			float y = 1.0 * sin(theta) * sin(phi);
 			float z = 1.0 * cos(theta);
@@ -66,19 +64,37 @@ void CreateShpere(int n) // n is the number of faces
 			vertices[counter] = x;
 			vertices[counter + 1] = y;
 			vertices[counter + 2] = z;			
-			//printf("[%f, %f , %f] \n", x, y, z);
 			counter += 3;
 		}
 
 	}
 
+	// for(int i = 0; i < n*n; i++)
+	// {
+	// 	indices[i] = 0;
+	// }
+
 	int shift = 0;
 	for (int i = 0; i < n*n; i++, shift += 3)
 	{
 		indices[shift] = i;
-		indices[shift + 1] = (i + 1)%(n*n);
-		indices[shift + 2] = (i + 2)%(n*n);
+		indices[shift + 1] = (i + 1)%(3*n*n);
+		indices[shift + 2] = (i + 2)%(3*n*n);
+		
 	}
+
+	// for(int i = 0; i < n; i++)
+	// {
+	// 	for(int j = 0; j < n; j++)
+	// 	{
+	// 		indices[n*i + j] = n*i + j;
+	// 		indices[(n*i + j + 1)%(n*n)] = (n*i + j + 1)%(n*n);
+	// 		indices[(n*i + j + 2)%(n*n)] = (n*i + j + 2)%(n*n);
+
+	// 	}
+	// }
+
+
 	/*printf("indices = \n");
 	printf("[ \n");
 	for (int i = 0; i < counter; i+=3)
@@ -112,7 +128,7 @@ void CreateObject()
 	obj1->CreateMesh(vertices, indices, 12, 12);
 	meshList.push_back(obj1);
 
-	CreateShpere(40);
+	CreateShpere(15);
 
 	/*Mesh* obj2 = new Mesh();
 	obj2->CreateMesh(vertices, indices, 12, 12);
@@ -129,18 +145,11 @@ int main()
 	CreateObject();
 	CreateShaders();
 
-	Camera cam = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 0.7f);
+	Camera cam = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 1.0f, 0.7f);
 
 	GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0;
 	glm::mat4 projection = glm::perspective(45.0f, mainWindow.getBufferWidth() / mainWindow.getBufferHeight(), 0.1f, 100.0f);
 
-	float curAngle = 0.0f;
-	float rotDir = 0.01f;
-	float maxSize = 0.8f;
-	float minSize = 0.1f;
-	float sizeIncreaseRate = 0.0f;
-	float curSize = 0.0f;
-	bool sizeDirection = true;
 	while (!mainWindow.getShouldClose())
 	{
 		GLfloat currentTime = glfwGetTime();
@@ -154,7 +163,7 @@ int main()
 
 
 		// clear window
-		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		shaderList[0].UseShader();
@@ -163,7 +172,7 @@ int main()
 		uniformView = shaderList[0].GetViewLocation();
 
 		glm::mat4 model(1.0f);
-		model = glm::translate(model, glm::vec3(triOffset, 0.0f, -2.5f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -2.5f));
 		model = glm::scale(model, glm::vec3(0.4f, 0.4f, 1.0f));
 
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));

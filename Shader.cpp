@@ -112,7 +112,7 @@ void Shader::CompileShader(const char* vertexCode, const char* fragmentCode)
 
 	glValidateProgram(shaderId);
 
-	glLinkProgram(shaderId);
+	// glLinkProgram(shaderId);
 	glGetProgramiv(shaderId, GL_VALIDATE_STATUS, &result);
 	if (!result)
 	{
