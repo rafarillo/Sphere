@@ -50,33 +50,45 @@ void CreateShpere(int n) // n is the number of faces
 	unsigned int* indices = new unsigned int[3 * n * n]; // 3 because is 3 coordinates x, y, z
 	GLfloat* vertices = new GLfloat[3 * n * n];
 	float raiuds = 1.0f;
+	int counter = 0;
 	for (int i = 0; i < n; i++)
 	{
 		float theta = M_PI / n * (float)i;
 		for (int j = 0; j < n; j++)
 		{
 			float phi = 2.0 * M_PI / n * (float)(j);
+			//printf("theta = %f\n", theta);
+			//printf("phi = %f\n", phi);
 			float x = 1.0 * sin(theta) * cos(phi);
 			float y = 1.0 * sin(theta) * sin(phi);
 			float z = 1.0 * cos(theta);
 
-			vertices[i + j] = x;
-			vertices[i + j + 1] = y;
-			vertices[i + j + 2] = z;
-
-			indices[i] = i % n;
-			indices[i + 1] = (i + 1) % n;
-			indices[i + 2] = (i + 2) % n;
-
+			vertices[counter] = x;
+			vertices[counter + 1] = y;
+			vertices[counter + 2] = z;			
+			//printf("[%f, %f , %f] \n", x, y, z);
+			counter += 3;
 		}
 
-
-
-		printf("x = %f y = %f z = %f \n", x, y, z);
 	}
 
+	int shift = 0;
+	for (int i = 0; i < n*n; i++, shift += 3)
+	{
+		indices[shift] = i;
+		indices[shift + 1] = (i + 1)%(n*n);
+		indices[shift + 2] = (i + 2)%(n*n);
+	}
+	/*printf("indices = \n");
+	printf("[ \n");
+	for (int i = 0; i < counter; i+=3)
+	{
+		printf("%d %d %d\n", indices[i], indices[i + 1], indices[i + 2]);
+	}
+	printf("]\n");*/
+
 	Mesh* obj = new Mesh();
-	obj->CreateMesh(vertices, indices, 3 * n, 3 * n);
+	obj->CreateMesh(vertices, indices, 3 * n * n, 3 * n * n);
 	meshList.push_back(obj);
 }
 
@@ -100,7 +112,7 @@ void CreateObject()
 	obj1->CreateMesh(vertices, indices, 12, 12);
 	meshList.push_back(obj1);
 
-	CreateShpere(20);
+	CreateShpere(40);
 
 	/*Mesh* obj2 = new Mesh();
 	obj2->CreateMesh(vertices, indices, 12, 12);
@@ -142,7 +154,7 @@ int main()
 
 
 		// clear window
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		shaderList[0].UseShader();
@@ -160,7 +172,7 @@ int main()
 		meshList[0]->RenderMesh();
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-triOffset, 1.0f, -2.5f));
+		model = glm::translate(model, glm::vec3(-1.0f, 1.0f, -2.5f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		meshList[1]->RenderMesh();

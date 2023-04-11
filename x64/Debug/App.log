@@ -1,12 +1,2 @@
-﻿  Main.cpp
-D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\Window.h(11,36): warning C4244: 'return': conversão de 'GLint' para 'GLfloat', possível perda de dados
-D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\Window.h(12,37): warning C4244: 'return': conversão de 'GLint' para 'GLfloat', possível perda de dados
-D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\Main.cpp(23,38): warning C4305: 'inicializando': truncamento de 'double' para 'float'
-D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\Main.cpp(56,15): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
-D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\Main.cpp(57,13): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
-D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\Main.cpp(58,11): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
-D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\Main.cpp(59,11): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
-D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\Main.cpp(60,11): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
-D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\Main.cpp(130,23): warning C4244: 'inicializando': conversão de 'double' para 'GLfloat', possível perda de dados
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflita com uso de outras bibliotecas; use /NODEFAULTLIB:library
+﻿  Mesh.cpp
   App.vcxproj -> D:\Udemy\Computer Graphics with Modern OpenGL and C++\Sphere\x64\Debug\App.exe

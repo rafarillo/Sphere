@@ -8,8 +8,8 @@ public:
 	Window();
 	Window(GLint windowWidth, GLint windowHeight);
 
-	GLfloat getBufferWidth() { return bufferWidth; }
-	GLfloat getBufferHeight() { return bufferHeight; }
+	GLfloat getBufferWidth() { return (GLfloat)bufferWidth; }
+	GLfloat getBufferHeight() { return (GLfloat)bufferHeight; }
 
 	bool getShouldClose() { return glfwWindowShouldClose(mainWindow); }
 
